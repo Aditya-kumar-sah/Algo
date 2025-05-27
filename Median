@@ -1,0 +1,36 @@
+
+//find median in o(logn) of an array with stream of elements i.e. array with dynamic elements
+
+void insert(multiset<ll>& st1, multiset<ll,greater<ll>>& st2,ll &e){
+            if(st1.empty()){
+                st1.insert(e);
+            }
+            else if(st2.empty()){
+                st2.insert(e);
+            }
+            else if(!st1.empty() && *(st1.begin()) <= e){
+                st1.insert(e);
+            }
+            else if(!st2.empty() && *(st2.begin()) >= e){
+                st2.insert(e);
+            }
+
+            while(st1.size()+1 < st2.size()){
+                 ll ele = *(st2.begin());
+                 st2.erase(st2.begin());
+                 st1.insert(ele);
+            }
+            while(st1.size() > st2.size()+1){
+                 ll ele = *(st1.begin());
+                 st1.erase(st1.begin());
+                 st2.insert(ele);
+            }
+
+            for(auto it : st2){
+              cout<<it<<" ";
+            }
+            for(auto it : st1){
+              cout<<it<<" ";
+            }
+            cout<<endl;
+}
