@@ -1,0 +1,67 @@
+//prime number---------------------------------------
+void primesGeneration(ll n){
+    vector<ll> primes(n+1,1);
+    primes[0] = 0;
+    primes[1] = 0;
+
+    for(ll i=2;i*i<=n;i++){
+        if(primes[i] == 1){
+          for(ll j=i*i;j<=n;j += i){
+              primes[j] = 0;
+          }
+        }
+    }
+
+    vector<ll> ans;
+
+    for(ll i=0;i<=n;i++){
+       if(primes[i] == 1) ans.push_back(i);
+    }
+}
+
+
+//Prime factor-------------------------------------
+vector<ll> Spf(ll n){
+    vector<ll> spf(n+1);
+
+    for(ll i=0;i<=n;i++){
+        spf[i] = i;
+    }
+
+    for(ll i=2;i*i<=n;i++){
+        if(spf[i] == i){
+          for(ll j=i*i;j<=n;j += i){
+              if(spf[j] == j){
+                 spf[j] = i;
+              }
+          }
+        }
+    }
+
+    return spf;
+}
+
+map<ll,ll> primeFactors(ll n,vector<ll>& spf){
+     map<ll,ll> mp;
+     while(n>1){
+        mp[spf[n]]++;
+        n = n/spf[n];
+     }
+
+     return mp;
+}
+
+//divisors-------------
+
+vector<ll> divisors(ll n){
+   vector<ll> ans;
+
+   for(ll i=1;i*i<=n;i++){
+      if(n%i == 0){
+         ans.push_back(i);
+         if((n/i) != i) ans.push_back(n/i);
+      }
+   }
+
+   return ans;
+}
