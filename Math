@@ -65,3 +65,21 @@ vector<ll> divisors(ll n){
 
    return ans;
 }
+
+
+//modular exponentiation
+ll pw(ll a,ll b,ll modu){
+   if(b==0) return 1;
+
+   if(b%2 == 0){
+       ll t = pw(a,b/2,modu);
+
+       return (t*t)%modu;
+   }
+   else{
+       ll t = pw(a,b-1,modu);
+       return (t*a)%modu;
+   }
+}
+
+
