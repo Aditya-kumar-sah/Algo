@@ -96,4 +96,19 @@ ll pwIt(ll a,ll b, ll modu){
     return ans;
 }
 
+//binaryMultiplication----when a*b is greater than range of long long then we use this
+// ((a+a)%mod+a)%mod...b times---->o(n)
+//a*(binary rep of b)
+ll binMult(ll a,ll b,ll modu){
+   ll ans = 0;
+   while(b){
+    if(b&1){
+        ans = (ans+a)%modu;
+    }
+    a = (a+a)%modu;
+    b = b>>1;
+   }
+
+   return ans;
+}
 
